@@ -1,0 +1,21 @@
+# Compiled files
+*.pyc
+*.pyo
+*.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Environments
+.venv/
+.env/
+
+# IDEs
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
