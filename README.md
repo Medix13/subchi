@@ -64,7 +64,7 @@ python subchi.py example.com -c previously_discovered.txt
 If you run the script with no arguments, it will output a syntax error message:
 
 ```bash
-Syntax Error - usage: subchi.py [-h] [-o OUTPUT_FILE] [-s SUBDOMAINS_FILE] [-c COMPARE_FILE] domain
+usage: subchi.py [-h] [-o OUTPUT_FILE] [-s SUBDOMAINS_FILE] [-c COMPARE_FILE] domain
 ```
 
 ## Contributing

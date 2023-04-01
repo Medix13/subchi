@@ -2,23 +2,26 @@ import dns.resolver
 import sys
 import argparse
 import os
+import logging
+import art
+from termcolor import colored
 
 
-def print_syntax_error():
-    parser = argparse.ArgumentParser(description='Subdomain checker')
-    syntax = parser.format_usage()
-    print(f'Syntax Error - {syntax}')
+logo = art.text2art('Subchi', font='doom')
+colored_logo = colored(logo, 'red')
+print(colored_logo)
 
 
 def main():
     parser = argparse.ArgumentParser(description='Subdomain checker')
     parser.add_argument('domain', help='the domain to check')
-    parser.add_argument('-o', help='output file',
-                        dest='output_file', default='output.txt')
-    parser.add_argument('-s', help='subdomains file',
-                        dest='subdomains_file', default='subdomains.txt')
-    parser.add_argument('-c', help='compare file',
-                        dest='compare_file', default=None)
+    parser.add_argument(
+        '-o', help='output file', dest='output_file', default='output.txt'
+    )
+    parser.add_argument(
+        '-s', help='subdomains file', dest='subdomains_file', default='subdomains.txt'
+    )
+    parser.add_argument('-c', help='compare file', dest='compare_file', default=None)
     args = parser.parse_args()
 
     domain = args.domain
@@ -26,7 +29,12 @@ def main():
     output_file = args.output_file
     subdomains_file = args.subdomains_file
     compare_file = args.compare_file
-    print(output_file)
+
+    logging.basicConfig(
+        level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s'
+    )
+    logging.info(f'Starting subdomain enumeration for {domain}')
+
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
 
@@ -36,7 +44,9 @@ def main():
 
     discovered_subdomains = []
     with open(os.path.join(output_dir, f"{domain}_{output_file}"), 'w') as f:
-        print('\n****************************\n    Subdomains:\n****************************\n')
+        print(
+            '\n****************************\n    Subdomains:\n****************************\n'
+        )
         for subdomain in subdomains:
             try:
                 ip_value = dns.resolver.resolve(f'{subdomain}.{domain}', 'A')
@@ -44,7 +54,7 @@ def main():
                     subdomain_with_domain = f'{subdomain}.{domain}'
                     discovered_subdomains.append(subdomain_with_domain)
                     f.write(f'{subdomain_with_domain} \n')
-                    print(subdomain_with_domain)
+                    logging.info(subdomain_with_domain)
             except dns.resolver.NXDOMAIN:
                 pass
             except dns.resolver.NoAnswer:
@@ -60,13 +70,12 @@ def main():
             compare_subdomains = set(line.strip() for line in f.readlines())
             new_subdomains = set(discovered_subdomains) - compare_subdomains
             print(
-                '\n****************************\n    New Subdomains found:\n****************************\n')
+                '\n****************************\n    New Subdomains found:\n****************************\n'
+            )
             for subdomain in new_subdomains:
                 print(subdomain)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 1:
-        print_syntax_error()
-    else:
-        main()
+    logging.basicConfig(level=logging.INFO, format='%(message)s')
+    main()
