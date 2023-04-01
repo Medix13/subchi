@@ -72,10 +72,6 @@ Syntax Error - usage: subchi.py [-h] [-o OUTPUT_FILE] [-s SUBDOMAINS_FILE] [-c C
 
 Contributions are welcome! If you have a feature request or a bug to report, please open an issue on GitHub. If you'd like to contribute code, please fork the repository and submit a pull request.
 
-## Contributing
-
-Contributions are welcome! If you have a feature request or a bug to report, please open an issue on GitHub. If you'd like to contribute code, please fork the repository and submit a pull request.
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE ](LICENSE.md) file for details.
