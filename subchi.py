@@ -1,6 +1,7 @@
 import dns.resolver
 import sys
 import argparse
+import os
 
 
 def print_syntax_error():
@@ -21,16 +22,21 @@ def main():
     args = parser.parse_args()
 
     domain = args.domain
+    output_dir = 'output'
     output_file = args.output_file
     subdomains_file = args.subdomains_file
     compare_file = args.compare_file
+    print(output_file)
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
 
     subdomains = []
     with open(subdomains_file, 'r') as f:
         subdomains = [line.strip() for line in f.readlines()]
 
     discovered_subdomains = []
-    with open(output_file, 'w') as f:
+    with open(os.path.join(output_dir, f"{domain}_{output_file}"), 'w') as f:
+        print('\n****************************\n    Subdomains:\n****************************\n')
         for subdomain in subdomains:
             try:
                 ip_value = dns.resolver.resolve(f'{subdomain}.{domain}', 'A')
@@ -38,6 +44,7 @@ def main():
                     subdomain_with_domain = f'{subdomain}.{domain}'
                     discovered_subdomains.append(subdomain_with_domain)
                     f.write(f'{subdomain_with_domain} \n')
+                    print(subdomain_with_domain)
             except dns.resolver.NXDOMAIN:
                 pass
             except dns.resolver.NoAnswer:
@@ -45,11 +52,15 @@ def main():
             except KeyboardInterrupt:
                 sys.exit(1)
 
-    if compare_file:
+        if len(discovered_subdomains) == 0:
+            print('No subdomains found.\n')
+
+    if compare_file and len(discovered_subdomains) != 0:
         with open(compare_file, 'r') as f:
             compare_subdomains = set(line.strip() for line in f.readlines())
             new_subdomains = set(discovered_subdomains) - compare_subdomains
-            print("New Subdomains found: ")
+            print(
+                '\n****************************\n    New Subdomains found:\n****************************\n')
             for subdomain in new_subdomains:
                 print(subdomain)
 

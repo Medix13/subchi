@@ -4,6 +4,7 @@
 *.class
 
 # Distribution / packaging
+output/
 dist/
 build/
 *.egg-info/

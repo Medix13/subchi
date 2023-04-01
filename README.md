@@ -32,25 +32,26 @@ To run the script, use the following command:
 python subchi.py <domain> [-o output_file] [-s subdomains_file] [-c compare_file]
 ```
 
-where:
+The domain argument is the domain to check for subdomains.
 
-- <domain>: the domain to check for subdomains
-- output_file: (optional) the file to output discovered subdomains to (default is output.txt)
-- subdomains_file: (optional) the file containing a list of subdomains to check (default is subdomains.txt)
-- compare_file: (optional) the file containing a list of previously discovered subdomains to compare against and print new subdomains found
+Optional arguments:
+
+- -o, --output-file: The name of the output file where the discovered subdomains will be written. Default is output.txt.
+- -s, --subdomains-file: The name of the file containing the list of subdomains to check. Default is subdomains.txt.
+- -c, --compare-file: The name of the file containing the list of previously discovered subdomains. If provided, the script will compare the new discoveries with the subdomains in this file and only output the new ones.
 
 ## Example
 
-To check for subdomains of example.com using the default subdomains.txt file and output to output.txt, run:
+To check for subdomains of example.com using the default subdomains.txt file and output to ~/output/example.com_output.txt, run:
 
 ```bash
 python subchi.py example.com
 ```
 
-To output to a different file and use a different list of subdomains, run:
+To output to a different file name and use a different list of subdomains, run:
 
 ```bash
-python subchi.py example.com -s subdomains-10000.txt -o output.txt
+python subchi.py example.com -o example_output.txt -s custom_subdomains.txt
 ```
 
 To compare against a previously discovered list of subdomains, run:
