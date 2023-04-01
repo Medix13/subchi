@@ -50,7 +50,7 @@ python subchi.py example.com
 To output to a different file and use a different list of subdomains, run:
 
 ```bash
-python subchi.py example.com -o subdomains.txt -s output.txt
+python subchi.py example.com -s subdomains.txt -o output.txt
 ```
 
 To compare against a previously discovered list of subdomains, run:
