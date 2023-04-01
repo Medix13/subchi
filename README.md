@@ -18,10 +18,10 @@ Go to the project directory
 cd subchi
 ```
 
-Install dependencies
+Install Setup
 
 ```bash
-pip install -r requirements.txt
+python setup.py install
 ```
 
 ## Usage
