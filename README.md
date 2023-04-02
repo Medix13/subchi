@@ -58,6 +58,11 @@ To compare against a previously discovered list of subdomains, run:
 ```bash
 python subchi.py example.com -c previously_discovered.txt
 ```
+The -t option is used to specify the DNS record type to be used for the subdomain lookup. The default value is A, which is used to look up the IPv4 address for the subdomain. However, there are other types of DNS records that can be looked up, such as CNAME, MX, NS, TXT, etc. To use a different record type, simply specify it as the value of the -t option. For example, to look up the mail exchange records (MX) for the subdomains, you can use the following command:
+
+```bash
+python subchi.py example.com -t MX
+```
 
 ## Syntax Error
 
