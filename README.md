@@ -71,7 +71,7 @@ python subchi.py example.com -t MX
 If you run the script with no arguments, it will output a syntax error message:
 
 ```bash
-usage: subchi.py [-h] [-o OUTPUT_FILE] [-s SUBDOMAINS_FILE] [-c COMPARE_FILE] domain
+usage: subchi.py [-h] [-o OUTPUT_FILE] [-s SUBDOMAINS_FILE] [-c COMPARE_FILE] [-t RECORD_TYPE] domain
 ```
 
 ## Contributing
