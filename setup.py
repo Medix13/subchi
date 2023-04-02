@@ -8,7 +8,7 @@ with open('requirements.txt', 'r') as f:
 
 setup(
     name='subchi',
-    version='1.0.0',
+    version='1.1.0',
     description='A tool for checking subdomains of a domain',
     long_description=long_description,
     long_description_content_type='text/markdown',

@@ -1,6 +1,5 @@
 # Subchi
 
-
 This script is a tool that checks for subdomains of a given domain by brute-forcing through a list of subdomains in a specified file. It uses the dns.resolver and argparse Python modules.
 
 ## Run Locally
@@ -28,7 +27,7 @@ python setup.py install
 To run the script, use the following command:
 
 ```bash
-python subchi.py <domain> [-o output_file] [-s subdomains_file] [-c compare_file]
+python subchi.py <domain> [-o <output_file>] [-s <subdomains_file>] [-c <compare_file>] [-t <record_type>]
 ```
 
 The domain argument is the domain to check for subdomains.
@@ -38,6 +37,7 @@ Optional arguments:
 - -o, --output-file: The name of the output file where the discovered subdomains will be written. Default is output.txt.
 - -s, --subdomains-file: The name of the file containing the list of subdomains to check. Default is subdomains.txt.
 - -c, --compare-file: The name of the file containing the list of previously discovered subdomains. If provided, the script will compare the new discoveries with the subdomains in this file and only output the new ones.
+- -t record_type: the DNS record type to query for each subdomain (default is A).
 
 ## Example
 
@@ -72,6 +72,7 @@ usage: subchi.py [-h] [-o OUTPUT_FILE] [-s SUBDOMAINS_FILE] [-c COMPARE_FILE] do
 Contributions are welcome! If you have a feature request or a bug to report, please open an issue on GitHub. If you'd like to contribute code, please fork the repository and submit a pull request.
 
 ## License
+
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
 This project is licensed under the MIT License. See the [LICENSE ](LICENSE.md) file for details.
