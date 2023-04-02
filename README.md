@@ -1,6 +1,8 @@
 # Subchi
 
-This script is a tool that checks for subdomains of a given domain by brute-forcing through a list of subdomains in a specified file. It uses the dns.resolver and argparse Python modules.
+This is a tool that checks for subdomains of a given domain name by querying the DNS server. It uses the dns.resolver module to query the DNS server for the specified domain and record type. It reads a list of subdomains from a file and checks each of them by appending them to the given domain name.
+
+The output of the script can be saved to a file specified by the user or the default output.txt file. Additionally, if a compare file is provided, it compares the discovered subdomains with the subdomains in the compare file and prints out any new subdomains found.
 
 ## Run Locally
 
